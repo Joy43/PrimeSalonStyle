@@ -33,7 +33,7 @@ const SelectRole = () => {
 
           {/* ------ Stylist  -------*/}
           <TouchableOpacity
-            onPress={() => {}}
+            onPress={() => {router.push("/(root)/(tabs)/profile")}}
             activeOpacity={0.85}
             className="flex-1 bg-neutral-900 border border-fuchsia-50  hover:bg-blue-500 rounded-2xl p-6 items-center"
           >
