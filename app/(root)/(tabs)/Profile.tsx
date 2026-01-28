@@ -38,7 +38,7 @@ export default function ProfileDetailScreen() {
       type: "success",
       text1: "Logged out successfully",
     });
-    router.replace("/(auth)/sign-in");
+    router.replace("/(auth)/login");
   };
   return (
     <SafeAreaView className="flex-1 bg-white py-10 mb-6">
