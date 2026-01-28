@@ -6,6 +6,7 @@ import {
   Platform,
   ScrollView,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -18,10 +19,9 @@ export default function LoginScreen() {
   const { isDark } = useColorScheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userType, setUserType] = useState<"client" | "stylist">("client");
 
   const handleLogin = () => {
-    console.log("Login attempted with:", { email, password, userType });
+    console.log("Login attempted with:", handleLogin);
   };
 
   return (
@@ -38,7 +38,6 @@ export default function LoginScreen() {
           contentContainerClassName="px-6 py-8"
           showsVerticalScrollIndicator={false}
         >
-          {/* Logo/Brand */}
           <View className="items-center mb-8">
             <View
               className={`w-20 h-20 rounded-2xl items-center justify-center mb-4 ${
@@ -57,30 +56,6 @@ export default function LoginScreen() {
             >
               Premium Booking Platform
             </Text>
-          </View>
-
-          {/* User Type Selection */}
-          <View className="flex-row mb-6 space-x-3">
-            <Button
-              onPress={() => setUserType("client")}
-              title="Client"
-              variant={userType === "client" ? "primary" : "outline"}
-              fullWidth
-              icon={
-                <Ionicons
-                  name="person-outline"
-                  size={18}
-                  color={
-                    userType === "client"
-                      ? "#ffffff"
-                      : isDark
-                        ? "#ffffff"
-                        : "#171717"
-                  }
-                />
-              }
-            />
-          
           </View>
 
           {/* Form */}
@@ -118,19 +93,18 @@ export default function LoginScreen() {
           </View>
 
           {/* Login Button */}
-          <Button
-            onPress={handleLogin}
-            title="Sign In"
-            fullWidth
-            size="lg"
-            className="mb-4"
-          />
 
+          <TouchableOpacity
+            onPress={() => router.push("/(auth)/login")}
+            className="w-full py-4 bg-white rounded-xl items-center"
+          >
+            <Text className="text-black text-base font-bold">Login Now</Text>
+          </TouchableOpacity>
           {/* Forgot Password */}
           <Button
             onPress={() => {}}
             title="Forgot Password?"
-            variant="ghost"
+            variant="primary"
             fullWidth
           />
 
@@ -144,11 +118,9 @@ export default function LoginScreen() {
             <Button
               onPress={() => router.push("/(auth)/sign-up")}
               title="Sign Up"
-              variant="ghost"
+              variant="primary"
             />
           </View>
-
-        
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>

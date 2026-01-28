@@ -1,40 +1,47 @@
-import React, { useState } from 'react';
-import { View, Text, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
-import { useRouter } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
-import { useColorScheme } from '../hook/Usecolorscheme';
-import { Header } from '../components/shared/Header';
-import { Input } from '../components/ui/Input';
-import { Button } from '../components/ui/Button';
-
+import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
+import { useState } from "react";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Header } from "../components/shared/Header";
+import { Button } from "../components/ui/Button";
+import { Input } from "../components/ui/Input";
+import { useColorScheme } from "../hook/Usecolorscheme";
 
 export default function SignupScreen() {
   const router = useRouter();
   const { isDark } = useColorScheme();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSignup = () => {
-    router.replace('/(auth)/login');
+    router.replace("/(auth)/select-role");
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-slate-900" edges={['top']}>
+    <SafeAreaView className="flex-1 bg-slate-900" edges={["top"]}>
       <Header title="Create Account" showBack />
-      
+
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="flex-1"
       >
         <ScrollView
           contentContainerClassName="px-6 py-6"
           showsVerticalScrollIndicator={false}
         >
-          <Text className={`text-base mb-6 ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
+          <Text
+            className={`text-base mb-6 ${isDark ? "text-neutral-400" : "text-neutral-600"}`}
+          >
             Join ShearSummit to book appointments with top professionals
           </Text>
 
@@ -43,7 +50,13 @@ export default function SignupScreen() {
             placeholder="Enter your full name"
             value={name}
             onChangeText={setName}
-            leftIcon={<Ionicons name="person-outline" size={20} color={isDark ? '#a3a3a3' : '#737373'} />}
+            leftIcon={
+              <Ionicons
+                name="person-outline"
+                size={20}
+                color={isDark ? "#a3a3a3" : "#737373"}
+              />
+            }
           />
 
           <Input
@@ -53,7 +66,13 @@ export default function SignupScreen() {
             onChangeText={setEmail}
             keyboardType="email-address"
             autoCapitalize="none"
-            leftIcon={<Ionicons name="mail-outline" size={20} color={isDark ? '#a3a3a3' : '#737373'} />}
+            leftIcon={
+              <Ionicons
+                name="mail-outline"
+                size={20}
+                color={isDark ? "#a3a3a3" : "#737373"}
+              />
+            }
           />
 
           <Input
@@ -62,7 +81,13 @@ export default function SignupScreen() {
             value={phone}
             onChangeText={setPhone}
             keyboardType="phone-pad"
-            leftIcon={<Ionicons name="call-outline" size={20} color={isDark ? '#a3a3a3' : '#737373'} />}
+            leftIcon={
+              <Ionicons
+                name="call-outline"
+                size={20}
+                color={isDark ? "#a3a3a3" : "#737373"}
+              />
+            }
           />
 
           <Input
@@ -71,7 +96,13 @@ export default function SignupScreen() {
             value={password}
             onChangeText={setPassword}
             secureTextEntry
-            leftIcon={<Ionicons name="lock-closed-outline" size={20} color={isDark ? '#a3a3a3' : '#737373'} />}
+            leftIcon={
+              <Ionicons
+                name="lock-closed-outline"
+                size={20}
+                color={isDark ? "#a3a3a3" : "#737373"}
+              />
+            }
           />
 
           <Input
@@ -80,10 +111,17 @@ export default function SignupScreen() {
             value={confirmPassword}
             onChangeText={setConfirmPassword}
             secureTextEntry
-            leftIcon={<Ionicons name="lock-closed-outline" size={20} color={isDark ? '#a3a3a3' : '#737373'} />}
+            leftIcon={
+              <Ionicons
+                name="lock-closed-outline"
+                size={20}
+                color={isDark ? "#a3a3a3" : "#737373"}
+              />
+            }
           />
-
+          {/* ------------ signin button-------- */}
           <Button
+          
             onPress={handleSignup}
             title="Create Account"
             fullWidth
@@ -92,13 +130,15 @@ export default function SignupScreen() {
           />
 
           <View className="flex-row items-center justify-center mt-6">
-            <Text className={`text-base ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
-              Already have an account?{' '}
+            <Text
+              className={`text-base ${isDark ? "text-neutral-400" : "text-neutral-600"}`}
+            >
+              Already have an account?{" "}
             </Text>
             <Button
-              onPress={() => router.back()}
+              onPress={() => router.push("/(auth)/login")}
               title="Sign In"
-              variant="ghost"
+              variant="secondary"
             />
           </View>
         </ScrollView>
