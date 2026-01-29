@@ -1,3 +1,4 @@
+import Popularservice from "@/app/components/client/Popularservice";
 import { Ionicons } from "@expo/vector-icons";
 import {
   Dimensions,
@@ -12,7 +13,6 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const { width } = Dimensions.get("window");
-
 interface Stylist {
   id: string;
   name: string;
@@ -21,37 +21,27 @@ interface Stylist {
   price: number;
   image: string;
 }
+const topStylists: Stylist[] = [
+  {
+    id: "1",
+    name: "Devon James",
+    location: "Brooklyn, NY",
+    rating: 4.9,
+    price: 48,
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
+  },
+  {
+    id: "2",
+    name: "Sarah Mitchell",
+    location: "Manhattan, NY",
+    rating: 5.0,
+    price: 55,
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
+  },
+];
 
 const HomeScreen = () => {
   const insets = useSafeAreaInsets();
-
-  const popularServices = [
-    { id: "1", name: "Hair", icon: "💇" },
-    { id: "2", name: "Tattoo", icon: "✒️" },
-    { id: "3", name: "Lashes", icon: "👁️" },
-    { id: "4", name: "Brows", icon: "✨" },
-  ];
-
-  const topStylists: Stylist[] = [
-    {
-      id: "1",
-      name: "Devon James",
-      location: "Brooklyn, NY",
-      rating: 4.9,
-      price: 48,
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-    },
-    {
-      id: "2",
-      name: "Sarah Mitchell",
-      location: "Manhattan, NY",
-      rating: 5.0,
-      price: 55,
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
-    },
-  ];
 
   return (
     <View className="flex-1 bg-black">
@@ -106,28 +96,7 @@ const HomeScreen = () => {
         contentContainerStyle={{ paddingBottom: 100 }}
       >
         {/* Popular Services */}
-        <View className="mt-6 px-5">
-          <Text className="text-xl font-bold text-white mb-4">
-            Popular Services
-          </Text>
-          <View className="flex-row justify-between">
-            {popularServices.map((service) => (
-              <TouchableOpacity
-                key={service.id}
-                className="items-center"
-                style={{ width: (width - 60) / 4 }}
-              >
-                <View className="w-[60px] h-[60px] rounded-2xl bg-[#1a1a1a] justify-center items-center mb-2">
-                  <Text className="text-3xl">{service.icon}</Text>
-                </View>
-                <Text className="text-xs text-white font-medium">
-                  {service.name}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </View>
-
+        <Popularservice />
         {/* --------- Top Rated Stylist ------------ */}
         <View className="mt-6 px-5">
           <View className="flex-row justify-between items-center mb-4">
